@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    php:
+        image: ${DOCKER_IMAGE_TAG_PREFIX}/php:${DOCKER_IMAGE_TAG}
+        build:
+            context: .
+            dockerfile: ./config/docker/php/Dockerfile

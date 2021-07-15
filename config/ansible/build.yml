@@ -1,0 +1,43 @@
+- name: build local object-asserter
+  hosts: 127.0.0.1
+  connection: local
+
+  gather_facts: true
+
+  roles:
+    - build-from-teamcity
+    - docker-compose-build
+
+  tasks:
+    #- name: "load variables for env (based on dev)"
+    #  include_vars: "{{ src }}/etc/docker/parameters.yml"
+    #- name: "load variables for testing and building"
+    #  include_vars: "{{ src }}/etc/docker/php/parameters.{{ compose_build_environment }}.yml"
+
+    - name: build
+      block:
+        - include_tasks: '{{ compose_tasks }}/with-registry.yml'
+
+        - include_tasks: '{{ compose_tasks }}/write-env.yml'
+          vars:
+            dest: "{{ src }}"
+
+        - name: 'build php'
+          command: 'docker-compose build --pull --force-rm php'
+          args:
+            chdir: "{{ src }}"
+        - include_tasks: '{{ compose_tasks }}/compose-push.yml'
+          vars:
+            compose_push_services: php
+
+        #- include_tasks: '{{ compose_tasks }}/create-package.yml'
+
+#        - file:
+#            path: "{{ package_directory }}/reports"
+#            state: directory
+#            group: www-data
+#            owner: www-data
+#          tags: package
+#
+      always:
+        - include_tasks: '{{ compose_tasks }}/always.yml'

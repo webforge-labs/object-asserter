@@ -1,0 +1,1 @@
+exec docker-compose exec php bash
