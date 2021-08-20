@@ -118,12 +118,12 @@ class ObjectAsserter
         return $this;
     }
 
-    public function contains(string $string): self
+    public function contains(string $needle): self
     {
         $this->assertThat(
-            $this->msg('%s does not contain substring %s', $this->path(), $string),
+            $this->msg('%s does not contain substring %s', $this->path(), $needle),
             $this->object,
-            Matchers::containsString($string)
+            Matchers::containsString($needle)
         );
 
         return $this;
@@ -226,7 +226,7 @@ class ObjectAsserter
     /**
      * Taps into the current chain without changing the context
      *
-     * $do = function($data, $objectAsserter)
+     * $do = function($value, $objectAsserter)
      *
      * do is called with first parameter the actual data of context and with second argument an objectAsserter in the current context
      */
@@ -315,13 +315,13 @@ class ObjectAsserter
      *
      * it does not traverse to sub properties, it stays on the same object scope
      * @param Matcher|mixed $matcher
-     * @param string[] $names
+     * @param string[] $indexes
      */
-    public function properties(array $names, $matcher): self
+    public function properties(array $indexes, $matcher): self
     {
         $matcher = $this->castMatcher($matcher);
 
-        foreach ($names as $name) {
+        foreach ($indexes as $name) {
             $this->property($name, $matcher);
         }
 
