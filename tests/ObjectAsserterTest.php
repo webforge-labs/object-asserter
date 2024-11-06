@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Webforge\ObjectAsserter\Tests;
 
@@ -127,6 +127,7 @@ class ObjectAsserterTest extends TestCase
         $author = $this->composer->property('authors')
             ->key(0)->get();
 
+        assert(property_exists($this->composerScalar, 'authors'));
         self::assertSame(
             $this->composerScalar->authors[0],
             $author,
@@ -196,6 +197,7 @@ class ObjectAsserterTest extends TestCase
                 ->property('name', 'Philipp Scheit')->end()
                 ->get();
 
+        assert(property_exists($this->composerScalar, 'authors'));
         self::assertSame($author, $this->composerScalar->authors[0]);
     }
 

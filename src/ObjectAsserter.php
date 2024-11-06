@@ -33,7 +33,7 @@ class ObjectAsserter
     protected array $path;
 
     /**
-     * @param array<int|string, mixed>|stdClass $object
+     * @param array<int|string, mixed>|stdClass|mixed $object
      * @param self|null $context
      * @param string[] $path
      */
@@ -93,7 +93,11 @@ class ObjectAsserter
     {
         $matcher = $this->castMatcher($matcher);
 
-        $this->assertThat($this->msg('%s does not match', $this->path()), $this->object, $matcher);
+        $this->assertThat(
+            $this->msg('%s does not match', $this->path()),
+            $this->object,
+            $matcher
+        );
         return $this;
     }
 
@@ -268,7 +272,7 @@ class ObjectAsserter
 
     /**
      * @param string $formatString
-     * @param mixed ...$args
+     * @param bool|float|int|string|null ...$args
      */
     protected function msg(string $formatString, ...$args): string
     {
@@ -299,7 +303,7 @@ class ObjectAsserter
      */
     protected function castMatcher($matcher): Matcher
     {
-        if (is_a($matcher, 'PHPUnit\Framework\Constraint\Constraint', false)) {
+        if ($matcher instanceof \PHPUnit\Framework\Constraint\Constraint) {
             throw new InvalidArgumentException('Hey there, sorry that you are still stuck with phpunit. Please use hamcrest matchers. Used: ' . get_class($matcher));
         }
 
