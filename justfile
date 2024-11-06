@@ -16,7 +16,7 @@ cli *args='':
     {{php}} bin/console "$@"
 
 phpstan *args='':
-    vendor/bin/phpstan "${@}"
+    {{ php }} vendor/bin/phpstan "${@}"
 
 watch-phpstan *args='':
     find src/ tests/ -name '*.php' | entr j phpstan analyse "${@}"

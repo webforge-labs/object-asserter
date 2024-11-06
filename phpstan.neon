@@ -5,6 +5,4 @@ parameters:
         - tests
 #   bootstrapFiles:
 #        - vendor/bin/.phpunit/phpunit/vendor/autoload.php
-
-rules:
-    - Ergebnis\PHPStan\Rules\Files\DeclareStrictTypesRule
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%&project=object-asserter'
