@@ -33,7 +33,7 @@ class ObjectAsserter
     protected array $path;
 
     /**
-     * @param array<int|string, mixed>|stdClass|mixed $object
+     * @param array<int|string, mixed>|stdClass|object|mixed $object
      * @param self|null $context
      * @param string[] $path
      */
@@ -68,7 +68,8 @@ class ObjectAsserter
      */
     public function property($name, $matcher = null): self
     {
-        $object = $this->assertedObject();
+        $this->isObject();
+        $object = $this->object;
         $propertyPath = $this->addPath('.' . $name);
 
         $this->assertThat(
@@ -157,7 +158,9 @@ class ObjectAsserter
      */
     public function key($index, $matcher = null): self
     {
-        $array = $this->assertedArray();
+        $this->isArray();
+        $array = $this->object;
+
         $this->assertThat(
             $this->msg('%s does not have key %s', $this->path(), $index),
             $array,
@@ -178,6 +181,7 @@ class ObjectAsserter
      * Asserts that the current item is an array
      *
      * the array can be empty
+     * @phpstan-assert array<int|string, mixed> $this->object
      */
     public function isArray(): self
     {
@@ -194,31 +198,12 @@ class ObjectAsserter
      * Asserts that the current item is an object
      *
      * the object can be empty
+     * @phpstan-assert object $this->object
      */
     public function isObject(): self
     {
         $this->assertThat($this->msg('%s is not an object', $this->path()), $this->object, Matchers::anObject());
         return $this;
-    }
-
-    private function assertedObject(): \stdClass
-    {
-        $this->isObject();
-        /** @var stdClass $object */
-        $object = $this->object;
-        return $object;
-    }
-
-    /**
-     * @return array<int|string, mixed>
-     */
-    private function assertedArray(): array
-    {
-        $this->isArray();
-        /** @var array<int|string, mixed> $array */
-        $array = $this->object;
-
-        return $array;
     }
 
     public function debug(): self

@@ -1,11 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Webforge\ObjectAsserter\Tests;
+namespace Webforge\ObjectAsserter;
 
 use DateTime;
 use Hamcrest\AssertionError;
 use Hamcrest\Matchers;
 use stdClass;
+use Webforge\ObjectAsserter\ExampleDto;
 use Webforge\ObjectAsserter\ObjectAsserter;
 use PHPUnit\Framework\TestCase;
 
@@ -46,7 +47,11 @@ class ObjectAsserterTest extends TestCase
                     "email" => "p.scheit@ps-webforge.com"
                 ]
             ],
-            "minimum-stability" => "stable"
+            "minimum-stability" => "stable",
+            'dtos' => [
+                new ExampleDto(),
+                new ExampleDto()
+            ]
         ]);
 
         $this->array1 = new ObjectAsserter([
@@ -88,6 +93,32 @@ class ObjectAsserterTest extends TestCase
     {
         $this->expectAssertionFailure();
         $this->array1->property('list1');
+    }
+
+    public function testPropertyOnRealObjects(): void
+    {
+        $this->composer->property('dtos')
+            ->key(0)
+            ->is(Matchers::anInstanceOf(ExampleDto::class));
+
+        $this->composer->property('dtos')->key(1)->isObject();
+
+        $this->expectAssertionFailure();
+        $this->composer->property('dtos')->key(1)->is(Matchers::anInstanceOf(TestCase::class));
+    }
+
+    public function testPropertiesOnRealObjects(): void
+    {
+        $value = $this->composer->property('dtos')
+            ->key(0)
+            ->property('prop1', 'value1')->get();
+
+        $this->assertSame('value1', $value);
+
+        $this->expectAssertionFailure();
+        $this->composer->property('dtos')
+            ->key(0)
+            ->property('not-there');
     }
 
     public function testLength(): void
