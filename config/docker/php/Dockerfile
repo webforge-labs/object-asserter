@@ -1,12 +1,12 @@
-# syntax=docker/dockerfile:experimental
 FROM webforgelabs/php-nodejs:php7.4-node12
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN mkdir /app
 WORKDIR /app
 
 COPY config/php/*.ini /usr/local/etc/php/conf.d/
-
-RUN composer self-update --2
 
 ## install and cache composer dependencies
 #COPY composer.json composer.lock ./

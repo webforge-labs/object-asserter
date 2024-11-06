@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91c58f5d3f19228deaf7686604b76da1",
+    "content-hash": "7a84a841f8d832014a6fa15fb4afe739",
     "packages": [
         {
             "name": "hamcrest/hamcrest-php",
@@ -127,83 +127,6 @@
                 }
             ],
             "time": "2020-11-10T18:47:58+00:00"
-        },
-        {
-            "name": "ergebnis/phpstan-rules",
-            "version": "0.15.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ergebnis/phpstan-rules.git",
-                "reference": "78a3dd88893cf3250ba339843503dcea7e9bee64"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ergebnis/phpstan-rules/zipball/78a3dd88893cf3250ba339843503dcea7e9bee64",
-                "reference": "78a3dd88893cf3250ba339843503dcea7e9bee64",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "nikic/php-parser": "^4.2.3",
-                "php": "^7.2 || ^8.0",
-                "phpstan/phpstan": "~0.11.15 || ~0.12.0"
-            },
-            "require-dev": {
-                "ergebnis/composer-normalize": "^2.9.0",
-                "ergebnis/license": "^1.1.0",
-                "ergebnis/php-cs-fixer-config": "^2.5.1",
-                "ergebnis/test-util": "^1.3.0",
-                "infection/infection": "~0.15.3",
-                "nette/di": "^3.0.1",
-                "phpstan/phpstan-deprecation-rules": "~0.11.2",
-                "phpstan/phpstan-strict-rules": "~0.11.1",
-                "phpunit/phpunit": "^8.5.8",
-                "psalm/plugin-phpunit": "~0.12.2",
-                "psr/container": "^1.0.0",
-                "vimeo/psalm": "^3.18",
-                "zendframework/zend-servicemanager": "^2.0.0"
-            },
-            "type": "phpstan-extension",
-            "extra": {
-                "phpstan": {
-                    "includes": [
-                        "rules.neon"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ergebnis\\PHPStan\\Rules\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andreas Möller",
-                    "email": "am@localheinz.com"
-                }
-            ],
-            "description": "Provides additional rules for phpstan/phpstan.",
-            "homepage": "https://github.com/ergebnis/phpstan-rules",
-            "keywords": [
-                "PHPStan",
-                "phpstan-extreme-rules",
-                "phpstan-rules"
-            ],
-            "support": {
-                "issues": "https://github.com/ergebnis/phpstan-rules/issues",
-                "source": "https://github.com/ergebnis/phpstan-rules"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/localheinz",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-10-30T09:50:34+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -657,20 +580,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.92",
+            "version": "1.12.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "64d4c5dc8ea96972bc18432d137a330239a5d2b2"
+                "reference": "dc2b9976bd8b0f84ec9b0e50cc35378551de7af0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/64d4c5dc8ea96972bc18432d137a330239a5d2b2",
-                "reference": "64d4c5dc8ea96972bc18432d137a330239a5d2b2",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/dc2b9976bd8b0f84ec9b0e50cc35378551de7af0",
+                "reference": "dc2b9976bd8b0f84ec9b0e50cc35378551de7af0",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8.0"
+                "php": "^7.2|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -680,11 +603,6 @@
                 "phpstan.phar"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.12-dev"
-                }
-            },
             "autoload": {
                 "files": [
                     "bootstrap.php"
@@ -695,9 +613,16 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
             "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.92"
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
             },
             "funding": [
                 {
@@ -707,17 +632,9 @@
                 {
                     "url": "https://github.com/phpstan",
                     "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/phpstan",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
-                    "type": "tidelift"
                 }
             ],
-            "time": "2021-07-10T13:53:49+00:00"
+            "time": "2024-10-18T11:12:07+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2299,5 +2216,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.6.0"
 }
