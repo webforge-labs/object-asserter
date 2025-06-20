@@ -16,9 +16,11 @@ class ObjectAsserterTest extends TestCase
     private ObjectAsserter $array1;
     private object $composerScalar;
 
+    use AssertionsTrait;
+
     protected function setUp(): void
     {
-        $this->composer = new ObjectAsserter($this->composerScalar = (object) [
+        $this->composer = $this->assertThatObject($this->composerScalar = (object) [
             "name" => "webforge/object-asserter",
             "description" => "Fluent DSL to do assertions on scalar structures",
             "type" => "library",
@@ -159,6 +161,7 @@ class ObjectAsserterTest extends TestCase
             ->key(0)->get();
 
         assert(property_exists($this->composerScalar, 'authors'));
+        assert(is_array($this->composerScalar->authors));
         self::assertSame(
             $this->composerScalar->authors[0],
             $author,
@@ -229,6 +232,7 @@ class ObjectAsserterTest extends TestCase
                 ->get();
 
         assert(property_exists($this->composerScalar, 'authors'));
+        assert(is_array($this->composerScalar->authors));
         self::assertSame($author, $this->composerScalar->authors[0]);
     }
 
@@ -244,7 +248,7 @@ class ObjectAsserterTest extends TestCase
             ->equals8601Date(new DateTime('02.01.2020'));
     }
 
-    private function expectAssertionFailure(string $message = null): void
+    private function expectAssertionFailure(?string $message = null): void
     {
         $this->expectException(AssertionError::class);
         if ($message !== null) {

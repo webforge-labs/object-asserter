@@ -37,7 +37,7 @@ class ObjectAsserter
      * @param self|null $context
      * @param string[] $path
      */
-    public function __construct($object, self $context = null, array $path = [])
+    public function __construct($object, ?self $context = null, array $path = [])
     {
         $this->object = $object;
 
@@ -266,6 +266,7 @@ class ObjectAsserter
 
     /**
      * @param mixed $matcher
+     * @phpstan-assert-if-true \Hamcrest\Matcher $matcher
      */
     protected function isMatcher($matcher): bool
     {
@@ -277,7 +278,7 @@ class ObjectAsserter
      * @param mixed $value
      * @param Matcher $matcher
      */
-    private function assertThat(string $messagePart, $value, Matcher $matcher): void
+    private function assertThat(string $messagePart, mixed $value, Matcher $matcher): void
     {
         $args = func_get_args();
         call_user_func_array([MatcherAssert::class, 'assertThat'], $args);
@@ -285,6 +286,7 @@ class ObjectAsserter
 
     /**
      * @param Matcher|mixed $matcher
+     * @return Matcher
      */
     protected function castMatcher($matcher): Matcher
     {

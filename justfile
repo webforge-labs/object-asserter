@@ -27,6 +27,10 @@ phpunit *args='':
 composer *args='':
     {{ composer }} "${@}"
 
+compile:
+   docker compose build php
+   j up
+
 fix:
     {{ php }} vendor/bin/php-cs-fixer fix -v
 
