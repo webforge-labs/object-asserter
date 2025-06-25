@@ -41,8 +41,7 @@ prep:
 
 up:
     docker compose up -d
+    j fix-docker-permissions
 
 fix-docker-permissions:
-    #docker compose exec --user=root php bash -c "mkdir -p /var/www/.composer /app/public/build && chown -R 33:33 /var/www /app/public/build /app/var/cache"
-    #docker compose exec --user=root node bash -c "chown -R 33:33 /var/www"
-    #docker compose exec --user=root node bash -c "mkdir -p /var/www/.cache && chown -R 33:33 /var/www/.cache /app/node_modules"
+    docker compose exec --user=root php bash -c "mkdir -p /var/www/.composer && chown -R 33:33 /var/www /app/var/cache"

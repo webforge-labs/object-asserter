@@ -4,3 +4,5 @@ services:
         build:
             context: .
             dockerfile: ./config/docker/php/Dockerfile
+        volumes:
+            - /var/www/.composer

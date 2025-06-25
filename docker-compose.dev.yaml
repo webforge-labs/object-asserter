@@ -2,4 +2,3 @@ services:
     php:
         volumes:
             - ./:/app
-            - /var/www/.cache
