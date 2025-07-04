@@ -1,0 +1,19 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build Docker image
+      run: docker build -t ci-image -f config/docker/php/Dockerfile --target ci .
+    
+    - name: Run PHPUnit tests
+      run: docker run --rm ci-image ./vendor/bin/phpunit

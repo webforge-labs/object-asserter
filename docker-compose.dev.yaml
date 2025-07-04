@@ -1,4 +1,6 @@
 services:
     php:
+        build:
+            target: dev
         volumes:
             - ./:/app
