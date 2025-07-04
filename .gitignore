@@ -1,4 +1,5 @@
 /.idea/
 /vendor/
 /var/cache
-/var/.phpunit.cache/code-coverage/
+/var/cache/.phpunit.cache
+
