@@ -14,6 +14,9 @@ jobs:
     
     - name: Build Docker image
       run: docker build -t ci-image -f config/docker/php/Dockerfile --target ci .
-    
+
+    - name: Run PHPStan tests
+      run: docker run --rm ci-image ./vendor/bin/phpstan analyse
+
     - name: Run PHPUnit tests
       run: docker run --rm ci-image ./vendor/bin/phpunit
