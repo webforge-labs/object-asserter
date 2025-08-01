@@ -1,6 +1,0 @@
-<?php
-
-namespace Hamcrest\Core;
-
-class AnyOf implements \Hamcrest\Matcher
-{}

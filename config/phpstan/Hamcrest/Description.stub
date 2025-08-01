@@ -1,6 +1,0 @@
-<?php
-
-namespace Hamcrest;
-
-interface Description
-{}

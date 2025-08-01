@@ -1,8 +1,0 @@
-<?php
-
-namespace Hamcrest\Text;
-
-use Hamcrest\BaseMatcher;
-
-class IsEmptyString extends BaseMatcher
-{}

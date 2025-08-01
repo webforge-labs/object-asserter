@@ -1,6 +1,0 @@
-<?php
-
-namespace Hamcrest;
-
-abstract class FeatureMatcher extends TypeSafeDiagnosingMatcher
-{}
