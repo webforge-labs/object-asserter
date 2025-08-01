@@ -1,8 +1,0 @@
-<?php
-
-namespace Hamcrest;
-
-abstract class BaseMatcher implements Matcher
-{
-    public function describeMismatch(mixed $item, Description $description): void {}
-}
