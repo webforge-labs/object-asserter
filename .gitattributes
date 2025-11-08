@@ -1,0 +1,17 @@
+# Exclude files from Composer package exports
+/.claude export-ignore
+/.github export-ignore
+/.idea export-ignore
+/config export-ignore
+/docs export-ignore
+/tests export-ignore
+/var export-ignore
+/.env export-ignore
+/.envrc export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/docker-compose.yaml export-ignore
+/docker-compose.dev.yaml export-ignore
+/justfile export-ignore
+/phpstan.neon export-ignore
+/phpunit.xml export-ignore
