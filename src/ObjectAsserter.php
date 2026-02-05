@@ -90,7 +90,7 @@ class ObjectAsserter
     /**
      * @param Matcher|mixed $matcher use a Matchers:: matcher to check against the value of the property. If this is a string equalTo() is assumed
      */
-    public function is($matcher): self
+    public function is(mixed $matcher): self
     {
         $matcher = $this->castMatcher($matcher);
 
@@ -288,7 +288,7 @@ class ObjectAsserter
      * @param Matcher|mixed $matcher
      * @return Matcher
      */
-    protected function castMatcher($matcher): Matcher
+    protected function castMatcher(mixed $matcher): Matcher
     {
         if ($matcher instanceof \PHPUnit\Framework\Constraint\Constraint) {
             throw new InvalidArgumentException('Hey there, sorry that you are still stuck with phpunit. Please use hamcrest matchers. Used: ' . get_class($matcher));
@@ -308,7 +308,7 @@ class ObjectAsserter
      * @param Matcher|mixed $matcher
      * @param string[] $indexes
      */
-    public function properties(array $indexes, $matcher): self
+    public function properties(array $indexes, mixed $matcher): self
     {
         $matcher = $this->castMatcher($matcher);
 
@@ -326,8 +326,8 @@ class ObjectAsserter
             $this->object,
             Matchers::isNonEmptyString()
         );
+        assert(is_string($this->object), 'phpstan does not interpret the  Hamcrest matcher before correctly');
 
-        assert(is_string($this->object));
         $date = \DateTime::createFromFormat('Y-m-d', $this->object);
 
         if ($date === false) {
